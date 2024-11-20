@@ -1,13 +1,13 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
 import { Korzinka } from "../../assets/icons/korzinka";
-import { saveState } from "../../config/store";
+
 import { Link } from "react-router-dom";
+import { addCart } from "../../pages/home/service/redux/product-reducer";
+import { useDispatch } from "react-redux";
 
 export const ProductCard = (item) => {
-    const add = (key, data) => {
-        saveState(key, data);
-    };
+    const dispatch = useDispatch();
 
     return (
         <Stack width={"241px"} pb={"100px"}>
@@ -42,8 +42,9 @@ export const ProductCard = (item) => {
                     <Typography fontWeight={600} fontSize={"18px"} color="#333">
                         {item.price} Сум
                     </Typography>
+
                     <Button
-                        onClick={() => add("product", item)}
+                        onClick={() => dispatch(addCart(item))}
                         variant="contained"
                     >
                         <Korzinka />

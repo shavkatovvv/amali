@@ -1,4 +1,5 @@
 import {
+    Badge,
     Button,
     Container,
     IconButton,
@@ -14,8 +15,11 @@ import { colors } from "../../config/colors";
 import { Profile } from "../../assets/icons/profile";
 import { HeaderIcon } from "../../assets/icons/header-icon";
 import { Form } from "../../components/form";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
+    const { count } = useSelector((state) => state.product);
     return (
         <Container maxWidth="xs" sx={{ pb: "18px" }}>
             <Stack>
@@ -55,10 +59,12 @@ export const Header = () => {
                 </Stack>
                 <Stack direction={"row"} gap={"32px"} alignItems={"center"}>
                     <Stack>
-                        <IconButton>
-                            <Profile />
-                        </IconButton>
-                        <Typography>Войти</Typography>
+                        <Link to={"/login"}>
+                            <IconButton>
+                                <Profile />
+                            </IconButton>
+                            <Typography>Войти</Typography>
+                        </Link>
                     </Stack>
                     <Stack>
                         <IconButton>
@@ -67,10 +73,17 @@ export const Header = () => {
                         <Typography>Избранное</Typography>
                     </Stack>
                     <Stack>
-                        <IconButton>
-                            <Profile />
-                        </IconButton>
-                        <Typography>Корзина</Typography>
+                        <Link to={"/korzina"}>
+                            <IconButton aria-label="cart">
+                                <Badge
+                                    badgeContent={count ? count : "0"}
+                                    color="error"
+                                >
+                                    <Profile />
+                                </Badge>
+                            </IconButton>
+                            <Typography>Корзина</Typography>
+                        </Link>
                     </Stack>
                 </Stack>
             </Stack>

@@ -1,7 +1,8 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
 import { Korzinka } from "../../assets/icons/korzinka";
-import { loadState, saveState } from "../../config/store";
+
+import { Link } from "react-router-dom";
 
 export const Phones = (item) => {
     return (
@@ -11,14 +12,16 @@ export const Phones = (item) => {
                     <img style={{ width: "140px" }} src={item.img} alt="img" />
                 </Box>
                 <Stack>
-                    <Typography
-                        fontWeight={400}
-                        fontSize={"16px"}
-                        lineHeight={"150%"}
-                        color="#333"
-                    >
-                        {item.title}
-                    </Typography>
+                    <Link to={`/product-detail/${item.id}`}>
+                        <Typography
+                            fontWeight={400}
+                            fontSize={"16px"}
+                            lineHeight={"150%"}
+                            color="#333"
+                        >
+                            {item.title}
+                        </Typography>
+                    </Link>
                     <Typography
                         mt={"6px"}
                         fontWeight={400}
