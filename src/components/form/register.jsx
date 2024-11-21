@@ -14,7 +14,7 @@ export const Register = () => {
             onSuccess: (data) => {
                 localStorage.setItem("userData", JSON.stringify(data));
 
-                navigate("/korzina");
+                navigate("/");
             },
             onError: (err) => {
                 console.log(err);
